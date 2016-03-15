@@ -50,12 +50,19 @@ router.post('/signup', function(req, res, next) {
   user.password = req.body.password;
   user.phone = req.body.phone;
   user.email = req.body.email;
+  user.access = 'user';
+  user.created_at = new Date().toUTCString();
+  user.updated_at = new Date().toUTCString();
   var password = req.body.password;
-  // Hash password and change the
+
+  // Hash password
   bcrypt.genSalt(10, function(err, salt) {
     bcrypt.hash(password, salt, function(err, hash) {
       user.password = hash;
-      res.json(user);
+      // Creat databse record
+      knex('users').insert(user).then(function(response){
+        res.send(response);
+      });
     });
   });
 
