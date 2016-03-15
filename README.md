@@ -3,10 +3,12 @@
 
 ## Creating your database
  1. createdb arise_pi
- 2. add .env file with 'DEV_DB=postgres://localhost/arise_pi'
- 3. knex migrate:latest
- 4. knex seed:run
- 5. psql food_planner
+ 2. Run `SET TIME ZONE 'UTC'`;
+ 3. add .env file with 'DEV_DB=postgres://localhost/arise_pi'
+ 4. knex migrate:latest
+ 5. knex seed:run
+ 6. psql food_planner
+
 
 ## Deploying to Heroku
  1. heroku login
