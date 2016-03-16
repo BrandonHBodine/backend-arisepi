@@ -46,7 +46,7 @@ app.use(expressJwt({
   path: [
     '/',
     '/users/signup',
-    '/users/signin'
+    '/users/login'
   ]
 }));
 

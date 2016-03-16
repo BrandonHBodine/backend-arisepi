@@ -32,7 +32,9 @@ router.get('/', function(req, res, next) {
  *******************/
 // MIGHT NOT NEED THIS ROUTE
 router.get('/signup', function(req, res, next) {
-  res.send('respond with a resource');
+  var user = req.user;
+  console.log(user);
+  res.send(user);
 });
 
 // Create USER
@@ -62,14 +64,14 @@ router.post('/signup', function(req, res, next) {
 
 });
 
-router.post('/signin', function(req, res, next) {
+router.post('/login', function(req, res, next) {
   // user sends a post request with email and password
   // Get email and password
   var email = req.body.email;
   var plainPass = req.body.password;
   var hashPass = '';
   var hashStore = '';
-  
+
   // Retrive stored password
   knex.select()
     .from('users')
