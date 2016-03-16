@@ -69,7 +69,7 @@ router.post('/signin', function(req, res, next) {
   var plainPass = req.body.password;
   var hashPass = '';
   var hashStore = '';
-
+  
   // Retrive stored password
   knex.select()
     .from('users')
@@ -109,8 +109,6 @@ router.post('/signin', function(req, res, next) {
       });
 
     });
-
-
 });
 
 /*******************

@@ -43,7 +43,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressJwt({
   secret: process.env.JWT_SECRET
 }).unless({
-  path: ['/',' /users/signup','/users/signin']
+  path: [
+    '/',
+    '/users/signup',
+    '/users/signin'
+  ]
 }));
 
 // Current routes
