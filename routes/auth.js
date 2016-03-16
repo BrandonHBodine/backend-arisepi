@@ -6,50 +6,13 @@ var bcrypt = require('bcrypt');
 var knex = require('../db/knex');
 var router = express.Router();
 
-var auth = expressJwt({
-  secret: process.env.SECRET
-});
+var auth = expressJwt({secret: process.env.JWT_SECRET});
 
-// authenticate: function(submission) {
-//   return new Promise(function(resolve, reject) {
-//     knex('users')
-//       .select('*')
-//       .where('username', submission.username)
-//       .then(function(userInfo) {
-//         var user = userInfo[0];
-//         var password = user.password;
-//         delete user.password;
-//         bcrypt.compare(submission.password, password, function(error, same) {
-//           if (error) {
-//             reject(error);
-//           }
-//           if (same) {
-//             resolve(user);
-//           } else {
-//             resolve(false);
-//           }
-//         });
-//       }).catch(function(error) {
-//         reject(error);
-//       });
-//   });
-// }
-
-router.post('/', function(req, res) {
-  accounts.authenticate(req.body).then(function(user) {
-    if (user) {
-      var token = jwt.sign(user, process.env.SECRET, {
-        expiresIn: 60 * 60
-      });
-      res.json({
-        token: token,
-      });
-    } else {
-      res.json('invalid');
+router.get('/', auth , function(req, res) {
+    if (!req.user) {
+      return res.sendStatus(401);
     }
-  }).catch(function(error) {
-    res.json(error);
+    res.sendStatus(200);
   });
-});
 
 module.exports = router;

@@ -1,36 +1,14 @@
 'use strict';
 var express = require('express');
-var expressJwt = require('express-jwt');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 var knex = require('../db/knex');
 
 var router = express.Router();
 
-// Configure the auth of a JWT
-var auth = expressJwt({
-  secret: process.env.SECRET
-});
-
 /* GET users listing. */
 // MIGHT NOT NEED THIS ROUTE
 router.get('/', function(req, res, next) {
-
-  // Testing stuff REMOVE
-  // var str = "password";
-  // bcrypt.genSalt(10, function(err, salt) {
-  //   bcrypt.hash(str, salt, function(err, hash) {
-  //     console.log(hash);
-  //   });
-  // });
-  //
-  // bcrypt.compare('password', '$2a$10$KkOrEzX9SPUBR/m4gxH07u9nnv8cKIfr69yK8HlQPl1GPNb3cJ0Ty', function(err, res) {
-  //   console.log(res);
-  // });
-  //
-  // knex.select().table('users').then(function(rows) {
-  //   res.send(rows);
-  // });
 
   var cert = process.env.JWT_SECRET;
 
@@ -45,7 +23,7 @@ router.get('/', function(req, res, next) {
 
   var token = jwt.sign(jwtPayload, cert, jwtOptions);
   console.log(token);
-  res.json(jwt.verify(token, cert));
+  res.json(token);
 
 });
 
@@ -140,8 +118,7 @@ router.post('/signin', function(req, res, next) {
  *******************/
 router.get('/:id', function(req, res, next) {
   var id = req.params.id;
-  var stuff = req.get('Authorization');
-  res.send(stuff);
+  res.send(req.user);
 });
 
 router.put('/:id', function(req, res, next) {

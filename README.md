@@ -1,7 +1,7 @@
 
 # Arise Pi
 
-## Trello Board for Project
+### Trello Board for Project
 [Trello Link](https://trello.com/b/7BCedz4N)
 
 ### Creating your database
