@@ -11,6 +11,15 @@ var bodyParser = require('body-parser');
 var knex;
 var expressJwt = require('express-jwt');
 
+// Testing Sockets
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+});
+
+// End Testing Sockets
 
 // Current route files
 var routes = require('./routes/index');
