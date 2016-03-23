@@ -9,33 +9,12 @@ var router = express.Router();
 /* GET users listing. */
 // MIGHT NOT NEED THIS ROUTE
 router.get('/', function(req, res, next) {
-
-  var cert = process.env.JWT_SECRET;
-
-  var jwtOptions = {
-    expiresIn: "30 days",
-  };
-
-  var jwtPayload = {
-    email: 'frozenaquanaut@hotmail.com',
-    phone: 3038828701
-  };
-
-  var token = jwt.sign(jwtPayload, cert, jwtOptions);
-  console.log(token);
-  res.json(token);
-
+  res.send('You have been authenticated');
 });
 
 /*******************
  Sign up
  *******************/
-// MIGHT NOT NEED THIS ROUTE
-router.get('/signup', function(req, res, next) {
-  var user = req.user;
-  console.log(user);
-  res.send(user);
-});
 
 // Create USER
 router.post('/signup', function(req, res, next) {
@@ -64,6 +43,9 @@ router.post('/signup', function(req, res, next) {
 
 });
 
+/*******************
+ Login
+ *******************/
 router.post('/login', function(req, res, next) {
   // user sends a post request with email and password
   // Get email and password
@@ -98,7 +80,8 @@ router.post('/login', function(req, res, next) {
 
           var jwtPayload = {
             email: row[0].email,
-            phone: row[0].phone
+            phone: row[0].phone,
+            user: row[0].id
           };
 
           var token = jwt.sign(jwtPayload, cert, jwtOptions);

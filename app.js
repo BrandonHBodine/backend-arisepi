@@ -12,12 +12,12 @@ var knex;
 var expressJwt = require('express-jwt');
 
 // Testing Sockets
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-
-io.on('connection', function(socket){
-  console.log('a user connected');
-});
+// var http = require('http').Server(app);
+// var io = require('socket.io')(http);
+//
+// io.on('connection', function(socket){
+//   console.log('a user connected');
+// });
 
 // End Testing Sockets
 
@@ -25,6 +25,7 @@ io.on('connection', function(socket){
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth');
+var clocks = require('./routes/clocks');
 
 // Intialize app
 var app = express();
@@ -63,6 +64,7 @@ app.use(expressJwt({
 app.use('/', routes);
 app.use('/users', users);
 app.use('/auth', auth);
+app.use('/clocks', clocks);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
