@@ -1,7 +1,7 @@
 'use strict';
-// require('dotenv').load({
-//   silent: true
-// });
+require('dotenv').load({
+  silent: true
+});
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
