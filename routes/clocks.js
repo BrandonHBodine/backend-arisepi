@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
 
 // Add a clock
 router.post('/add', function(req, res, next) {
-  //fGet user id from JWT
+  //Get user id from JWT
   var user_id = req.user.user;
 
   var piclock = {};
@@ -36,7 +36,20 @@ router.post('/add', function(req, res, next) {
 
 });
 
-router.put('/update', function(req, res, next) {
+
+router.get('/:id', function(req, res, next) {
+  //Get user id from JWT
+  var user_id = req.user.user;
+  var clock_id = req.params.id;
+  knex.select()
+    .from('piclocks')
+    .where( {'user_id': user_id, 'id': clock_id} )
+    .then(function(data){
+      res.json(data);
+    });
+});
+
+router.put('/id', function(req, res, next) {
 
 });
 

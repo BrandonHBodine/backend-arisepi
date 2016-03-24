@@ -1,5 +1,5 @@
 
-# Arise Pi
+# Arise Pi Backend
 
 ### Trello Board for Project
 [Trello Link](https://trello.com/b/7BCedz4N)
