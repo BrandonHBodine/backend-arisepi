@@ -34,7 +34,7 @@ router.post('/signup', function(req, res, next) {
   bcrypt.genSalt(10, function(err, salt) {
     bcrypt.hash(password, salt, function(err, hash) {
       user.password = hash;
-      // Creat databse record
+      // Create databse record
       knex('users').insert(user).then(function(response) {
         res.send(response);
       });
