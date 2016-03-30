@@ -14,14 +14,7 @@ exports.seed = function(knex, Promise) {
     knex('piclocks').insert({
       name: 'clock2',
       user_id: '1',
-      ip: '10.0.0.15',
-      created_at: new Date().toUTCString(),
-      updated_at: new Date().toUTCString()
-    }),
-    knex('piclocks').insert({
-      name: 'clock3',
-      user_id: '1',
-      ip: '10.0.0.18',
+      ip: '172.20.10.2:3000',
       created_at: new Date().toUTCString(),
       updated_at: new Date().toUTCString()
     })
